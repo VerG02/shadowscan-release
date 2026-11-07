@@ -1,0 +1,16 @@
+{
+  "build_id": "fbb3136e0e45",
+  "files": {
+    "loader.lua": {
+      "bytes": 8484,
+      "sha256": "54f234f2f94ef5a321e059dc5cfb0456fe47373a88e0dcd400903cf8e30e86a1"
+    },
+    "shadowscan.bundle.lua": {
+      "bytes": 324969,
+      "sha256": "05ae25915e46e6504060390d564c7d393f96733f2da7b7fdcd92760f1359ffc3"
+    }
+  },
+  "name": "ShadowScan",
+  "note": "Verify loader.lua sha256 out-of-band (release notes / signed tag) before running it.",
+  "version": "0.4.2"
+}
