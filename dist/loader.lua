@@ -1,5 +1,5 @@
 --!nonstrict
--- ShadowScan loader  v0.4.2  build fbb3136e0e45
+-- ShadowScan loader  v0.4.3  build 318b5e6ecaf9
 -- GENERATED from loader/loader.template.lua by tools/build.py (version, build id and bundle hash are pinned below).
 --
 -- What this file does:
@@ -18,9 +18,9 @@
 
 local config = ... or {}
 
-local VERSION = "0.4.2"
-local BUILD_ID = "fbb3136e0e45"
-local EXPECTED_BUNDLE_SHA256 = "05ae25915e46e6504060390d564c7d393f96733f2da7b7fdcd92760f1359ffc3"
+local VERSION = "0.4.3"
+local BUILD_ID = "318b5e6ecaf9"
+local EXPECTED_BUNDLE_SHA256 = "00cfa2ec192ec4236c6a33df9243745e7711b81fb297e553047fb61d5064bcf4"
 
 -- Source of the bundle. "workspace" (default) reads BUNDLE_PATH with readfile.
 -- "url" downloads BUNDLE_URL, which MUST be pinned to a 40-hex commit or a vX.Y.Z tag; branches are rejected.
@@ -109,6 +109,15 @@ local function genv()
 end
 local G = genv()
 
+-- Capture the DataModel from the loader's own execution environment. Some executors expose
+-- `game` as a script global but omit it from getgenv() and _G; Main must not infer it only
+-- from those tables. This is a read-only reference to the current Roblox DataModel.
+local runtime_game
+do
+	local ok, value = pcall(function() return game end)
+	if ok and value ~= nil then runtime_game = value end
+end
+
 local function cap(name)
 	local v = rawget(G, name)
 	if v == nil then
@@ -175,6 +184,7 @@ if not ok_run or type(ss_require) ~= "function" then fail("bundle failed to init
 local Main = ss_require("client.main")
 local session = Main.new({
 	globals = G,
+	deps = { game = runtime_game },
 	loader_info = { version = VERSION, build_id = BUILD_ID, bundle_sha256 = actual, source = BUNDLE_SOURCE },
 	config = config,
 })
