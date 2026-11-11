@@ -1,16 +1,13 @@
 {
-  "build_id": "318b5e6ecaf9",
-  "files": {
-    "loader.lua": {
-      "bytes": 8920,
-      "sha256": "c6dc581973a0cfc884afb23525c12b9f144b209c823ca451d228b320a8a3a995"
-    },
-    "shadowscan.bundle.lua": {
-      "bytes": 325694,
-      "sha256": "00cfa2ec192ec4236c6a33df9243745e7711b81fb297e553047fb61d5064bcf4"
-    }
-  },
-  "name": "ShadowScan",
-  "note": "Verify loader.lua sha256 out-of-band (release notes / signed tag) before running it.",
-  "version": "0.4.3"
+  "product": "ShadowScan",
+  "version": "0.6.1",
+  "edition": "Standalone Runtime Intelligence",
+  "artifact": "dist/ShadowScan_v0.6.1_Standalone.lua",
+  "artifact_bytes": 193340,
+  "sha256": "da46c8fd2e305a877b58f26519eeb46ed0fbecc7cbd959cd30d6fe98f8174c7b",
+  "loader": "loader.lua",
+  "loader_url": "https://raw.githubusercontent.com/VerG02/shadowscan-release/release-v0.6.1/loader.lua",
+  "artifact_url": "https://raw.githubusercontent.com/VerG02/shadowscan-release/release-v0.6.1/dist/ShadowScan_v0.6.1_Standalone.lua",
+  "release_ref": "release-v0.6.1",
+  "integrity_note": "The loader verifies artifact bytes against an embedded SHA-256 digest. This does not authenticate the loader publisher; verify the loader independently."
 }
