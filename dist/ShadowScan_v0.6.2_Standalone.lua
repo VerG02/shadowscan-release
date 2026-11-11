@@ -997,7 +997,8 @@ function A:destroy(from_owner)
 	self.destroyed = true
 	if self.renderer then self.renderer:destroy() self.renderer = nil end
 	if not from_owner and type(self.deps.on_close) == "function" then
-		pcall(self.deps.on_close)	end
+		pcall(self.deps.on_close)
+	end
 end
 
 return A
@@ -1996,7 +1997,8 @@ end
 -- 0.6.1: describe() can NEVER error, even on a half-initialized instance or when called through a
 -- loader that ignores the returned values (0.6.0 crashed here when self.caps was nil, which is
 -- exactly what happens if the module table -- not an instance -- is described).
-function M:describe()	local ok, caps_text = pcall(util.describe_caps, self.caps or {}, self.executor_name)
+function M:describe()
+	local ok, caps_text = pcall(util.describe_caps, self.caps or {}, self.executor_name)
 	if not ok or type(caps_text) ~= "string" then caps_text = "executor=unknown clipboard=NO writefile=NO" end
 	return "ShadowScan " .. config.VERSION .. " (" .. config.EDITION .. ") - " .. caps_text
 end
@@ -2996,6 +2998,7 @@ function S:save_snapshot()
 	end
 	return snapshots.save(snap, self.caps)
 end
+
 function S:compare(previous, latest)
 	if type(previous) ~= "table" then return false, "previous snapshot is missing or invalid" end
 	if latest == nil then latest = self:snapshot() end
@@ -3995,6 +3998,7 @@ local function wire(self, entry, node)
 		end)
 	end
 end
+
 local function build_children(self, node, parent_entry)
 	local by_id = {}
 	local old = parent_entry and parent_entry.children or {}
