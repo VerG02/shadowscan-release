@@ -1,19 +1,19 @@
-# GitHub Loader — ShadowScan v0.6.1
+# GitHub Loader — ShadowScan v0.6.2
 
 ## Execute
 
 ```lua
-loadstring(game:HttpGet("https://raw.githubusercontent.com/VerG02/shadowscan-release/release-v0.6.1/loader.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/VerG02/shadowscan-release/release-v0.6.2/loader.lua"))()
 ```
 
-The loader fetches the version-pinned artifact at `dist/ShadowScan_v0.6.1_Standalone.lua` and verifies its SHA-256 before calling `loadstring`.
+The loader fetches the version-pinned artifact at `dist/ShadowScan_v0.6.2_Standalone.lua` and verifies its SHA-256 before calling `loadstring`.
 
 ## Pinned configuration
 
 - Repository: `VerG02/shadowscan-release`
-- Release ref: `release-v0.6.1`
-- Artifact path: `dist/ShadowScan_v0.6.1_Standalone.lua`
-- Artifact SHA-256: `da46c8fd2e305a877b58f26519eeb46ed0fbecc7cbd959cd30d6fe98f8174c7b`
+- Release ref: `release-v0.6.2`
+- Artifact path: `dist/ShadowScan_v0.6.2_Standalone.lua`
+- Artifact SHA-256: `8951d4fb6d4508d6c1841f2cd3c36cfed2d10954466f150f19c57fbca582c018`
 
 ## Integrity model
 

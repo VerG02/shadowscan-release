@@ -1,8 +1,20 @@
-ShadowScan v0.6.1 — GitHub Loader
+SHADOWSCAN 0.6.2 — EXECUTION
 
-Paste into a compatible Roblox executor:
+1. Open your Roblox executor.
+2. Run this loader command:
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/VerG02/shadowscan-release/release-v0.6.1/loader.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/VerG02/shadowscan-release/release-v0.6.2/loader.lua"))()
 
-Manual standalone artifact:
-https://raw.githubusercontent.com/VerG02/shadowscan-release/release-v0.6.1/dist/ShadowScan_v0.6.1_Standalone.lua
+3. The loader verifies the pinned artifact SHA-256 before starting the scanner.
+4. Use the top-bar Scan button to begin a passive client-visible inventory scan.
+
+WINDOW CONTROLS
+- — Minimize the window to a compact bar. Press Open to restore it.
+- × Close the UI, disconnect the heartbeat lifecycle, and stop passive live observation.
+- Re-run the loader after closing to start a fresh instance.
+
+NOTES
+- The scanner does not fire RemoteEvents or RemoteFunctions and does not modify game state.
+- The inventory is client-visible only; it is not a complete server inventory.
+- Executor GUI/API compatibility has not been tested in this build environment. Verify on your target executor.
+- Run dist/ShadowScan_v0.6.2_Standalone.lua directly only if you prefer not to use the loader.

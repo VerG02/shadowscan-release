@@ -1,19 +1,16 @@
 # Changelog
 
-## 0.6.1 — Final packaging and reliability adjustments
+## 0.6.2 — UI controls, motion polish & report accuracy
 
-* Configured the production loader for `VerG02/shadowscan-release`, pinned to `release-v0.6.1`,
-  with the exact `dist/ShadowScan_v0.6.1_Standalone.lua` path and a mandatory embedded SHA-256.
-* Added a duplicate-execution guard using the executor/global environment where writable. The loader
-  returns the active instance on repeat execution and clears its guard when the application is destroyed.
-* Added a `game:HttpGet` fallback after request-style HTTP functions, while retaining fail-closed
-  response validation and artifact hash verification.
-* Partial/cancelled scans no longer mark unvisited inventory entries as stale. Absence is inferred
-  only from a complete inventory pass.
-* Live observation now uses the same duplicate-sibling path suffixing as full inventory scans.
-* Live buffer overflow now emits a one-time Heartbeat render signal while remaining available in
-  report history; it no longer forces a render on every subsequent Heartbeat.
-* Corrected README console API examples and added loader/package invariant tests.
+- Added a compact **minimize / restore** state. The main panel collapses to a small top bar with an Open control; restoring returns to the previous page and session state.
+- Added a true **close** action. It destroys the UI, disconnects the Heartbeat lifecycle, stops passive live observation, and leaves no duplicate hidden window. Re-executing the loader starts a fresh session.
+- Added short TweenService easing for minimize / restore geometry and button hover feedback. If TweenService is unavailable, the renderer uses a non-animated fallback.
+- Fixed severity aggregation in the Dashboard and plaintext report. The engine emits lowercase labels while the counters expected uppercase keys; counts now normalize severity and the report prints its total.
+- Clarified that severity is the impact class while candidate priority is only an investigation ordering score; repeated category headings are no longer duplicated.
+- Validation performed in this environment: `python -m pytest -q` — 11 passed, 1 skipped (one Luau CLI smoke test is skipped). The skipped smoke test and the Luau behavioral suite require the Luau CLI, which was unavailable in this environment. No Roblox executor test was run, so real-executor UI behaviour remains unverified.
+
+---
+
 
 ## 0.6.1 — Critical Stabilization & Repair
 Mandatory repair release after an independent source audit of the 0.6.0 ZIP. No new features: the

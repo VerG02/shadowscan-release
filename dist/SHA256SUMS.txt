@@ -1,1 +1,2 @@
-da46c8fd2e305a877b58f26519eeb46ed0fbecc7cbd959cd30d6fe98f8174c7b  ShadowScan_v0.6.1_Standalone.lua
+ce0bb71379f0f7fedbd0f79c4fa6c3d1b76944b23866eaa7e767ece5909b136e  ShadowScan_v0.6.1_Standalone.lua
+8951d4fb6d4508d6c1841f2cd3c36cfed2d10954466f150f19c57fbca582c018  ShadowScan_v0.6.2_Standalone.lua

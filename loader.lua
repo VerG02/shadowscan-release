@@ -1,5 +1,5 @@
 --!nonstrict
--- ShadowScan v0.6.1 production loader for VerG02/shadowscan-release.
+-- ShadowScan v0.6.2 production loader for VerG02/shadowscan-release.
 -- Release ref is version-pinned. Artifact SHA-256 is mandatory and checked BEFORE loadstring.
 -- The embedded digest protects the downloaded artifact bytes; it does not authenticate this loader
 -- itself. Verify this loader from the repository URL or compare its published SHA-256 out of band.
@@ -8,9 +8,9 @@
 local CONFIG = {
 	REPO_OWNER = "VerG02",
 	REPO_NAME = "shadowscan-release",
-	RELEASE_REF = "release-v0.6.1",
-	ARTIFACT_PATH = "dist/ShadowScan_v0.6.1_Standalone.lua",
-	EXPECTED_SHA256 = "da46c8fd2e305a877b58f26519eeb46ed0fbecc7cbd959cd30d6fe98f8174c7b",
+	RELEASE_REF = "release-v0.6.2",
+	ARTIFACT_PATH = "dist/ShadowScan_v0.6.2_Standalone.lua",
+	EXPECTED_SHA256 = "8951d4fb6d4508d6c1841f2cd3c36cfed2d10954466f150f19c57fbca582c018",
 }
 
 -- Duplicate-execution guard: use the executor environment where available, then the chunk/global
@@ -27,12 +27,12 @@ local function resolve_global_env()
 end
 
 local GLOBAL_ENV = resolve_global_env()
-local GUARD_KEY = "__SHADOWSCAN_STANDALONE_V061__"
+local GUARD_KEY = "__SHADOWSCAN_STANDALONE_V062__"
 if GLOBAL_ENV then
 	local ok_existing, existing = pcall(function() return GLOBAL_ENV[GUARD_KEY] end)
-	if ok_existing and type(existing) == "table" and existing.VERSION == "0.6.1"
+	if ok_existing and type(existing) == "table" and existing.VERSION == "0.6.2"
 		and type(existing.instance) == "table" and existing.instance.destroyed ~= true then
-		print("[ShadowScan loader] v0.6.1 is already running; returning the existing instance")
+		print("[ShadowScan loader] v0.6.2 is already running; returning the existing instance")
 		return existing
 	end
 end

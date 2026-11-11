@@ -1,33 +1,64 @@
-# ShadowScan v0.6.1 — Standalone Runtime Intelligence
+# ShadowScan 0.6.2 — Standalone Runtime Intelligence
 
-One standalone Luau artifact. No companion app, backend, localhost service, or encryption.
+**One Luau script. Runtime inventory first, optional static source analysis.**
 
-ShadowScan passively inventories remote objects visible to the Roblox client: RemoteEvent, RemoteFunction, and UnreliableRemoteEvent. It provides evidence-based classification, priority/confidence/status assessment, passive live observation, session snapshots/comparison, and plaintext reports. Optional static analysis scans Luau source explicitly supplied or authorized by the user.
+ShadowScan inventories the client-visible Roblox DataModel, discovers RemoteEvent / RemoteFunction / UnreliableRemoteEvent objects, classifies them, and reports evidence-first review candidates. The optional static analyzer only reads Luau source text supplied by the user. It never executes that source.
 
-> Runtime inventory is client-visible only. It is not a complete server inventory and cannot establish server-side vulnerability from names or metadata alone. ShadowScan never fires/invokes remotes, fuzzes endpoints, reads protected script source, or executes analyzed source.
+## What's new in 0.6.2
 
-## Execute
+- A **minimize button** collapses the full window into a compact top-bar chip. Press **Open** to restore it.
+- A **close button (×)** tears down the window and its Heartbeat connection. Re-run the loader to start another session.
+- Minimize / restore transitions and button hover states use short TweenService easing when available; otherwise the interface falls back to immediate updates.
+- Runtime severity counters now normalize the engine's lowercase labels (`low`, `informational`) so Dashboard and plaintext report totals agree.
+- Repeated report headings are de-duplicated, and the report explains that severity and candidate priority are separate dimensions.
 
-Paste this single line into a compatible Roblox executor:
+## Detection coverage
+
+| Runtime (primary) | Static (optional) |
+|---|---|
+| RemoteEvent discovery | 19 pattern rules |
+| RemoteFunction discovery | 4 correlation rules |
+| UnreliableRemoteEvent discovery | Comment-aware matching |
+| 14 classification families | Line-number evidence |
+| 3-dimensional risk scoring | Severity + confidence |
+| Factual relationship summary | Dual-mode plaintext report |
+| Passive live observation | Independent evidence model |
+| Session snapshots + comparison | |
+
+## Quick start
+
+### GitHub loader
+
+Execute this in a Roblox executor that supports `http_request`/`request`, `loadstring`, and the relevant Roblox GUI APIs:
 
 ```lua
-loadstring(game:HttpGet("https://raw.githubusercontent.com/VerG02/shadowscan-release/release-v0.6.1/loader.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/VerG02/shadowscan-release/release-v0.6.2/loader.lua"))()
 ```
 
-The loader fetches the version-pinned artifact, verifies its embedded SHA-256 before execution, and uses a duplicate-execution guard when the environment supports it.
+The loader fetches the pinned release artifact and verifies its SHA-256 before execution.
 
-## Manual fallback
+### Direct file
 
-The standalone artifact is at [dist/ShadowScan_v0.6.1_Standalone.lua](dist/ShadowScan_v0.6.1_Standalone.lua). Direct execution bypasses the loader's download and integrity check.
+Run `dist/ShadowScan_v0.6.2_Standalone.lua` directly in the executor. The GUI appears automatically only when a supported PlayerGui/CoreGui parent is available.
 
-## Release integrity
+### Window controls
 
-- Version: 0.6.1
-- Artifact: dist/ShadowScan_v0.6.1_Standalone.lua
-- SHA-256: da46c8fd2e305a877b58f26519eeb46ed0fbecc7cbd959cd30d6fe98f8174c7b
-- Loader: loader.lua
-- Integrity verification checks the downloaded artifact against the loader's embedded digest. It does not independently authenticate the loader publisher.
+- **–** minimizes the window to a compact bar; **Open** restores it.
+- **×** closes the UI, disconnects its heartbeat lifecycle, and stops passive observation. Execute the loader again to reopen a fresh session.
+- Hover and minimize/restore transitions animate when TweenService is available. Animation is optional and never required for the scanner to work.
 
-See docs/LIMITATIONS.md, docs/ARCHITECTURE.md, docs/DETECTION.md, and docs/GITHUB_LOADER.md.
+## Build and validate
 
-Real Roblox/executor compatibility must be verified in the target runtime; Luau CLI tests do not establish executor compatibility.
+```powershell
+python tools/build_standalone.py
+python tools/build_standalone.py --check
+python -m pytest -q
+python tools/run_luau_tests.py
+python tools/mutation_check.py
+```
+
+The checked-in Luau suite requires the standalone Luau CLI. Roblox executor behaviour must still be verified in the target executor; mock/CLI results do not certify executor compatibility.
+
+## Honest limitations
+
+The inventory is client-visible only. Replication and StreamingEnabled may hide objects. Names and metadata are hints, not proof of vulnerabilities. Server-side validation is not visible from the client. The scanner never fires remotes or changes game state. See [docs/LIMITATIONS.md](docs/LIMITATIONS.md).

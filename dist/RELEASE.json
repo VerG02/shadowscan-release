@@ -1,13 +1,16 @@
 {
-  "product": "ShadowScan",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "edition": "Standalone Runtime Intelligence",
-  "artifact": "dist/ShadowScan_v0.6.1_Standalone.lua",
-  "artifact_bytes": 193340,
-  "sha256": "da46c8fd2e305a877b58f26519eeb46ed0fbecc7cbd959cd30d6fe98f8174c7b",
-  "loader": "loader.lua",
-  "loader_url": "https://raw.githubusercontent.com/VerG02/shadowscan-release/release-v0.6.1/loader.lua",
-  "artifact_url": "https://raw.githubusercontent.com/VerG02/shadowscan-release/release-v0.6.1/dist/ShadowScan_v0.6.1_Standalone.lua",
-  "release_ref": "release-v0.6.1",
-  "integrity_note": "The loader verifies artifact bytes against an embedded SHA-256 digest. This does not authenticate the loader publisher; verify the loader independently."
+  "artifact": "dist/ShadowScan_v0.6.2_Standalone.lua",
+  "sha256": "8951d4fb6d4508d6c1841f2cd3c36cfed2d10954466f150f19c57fbca582c018",
+  "bytes": 196832,
+  "loader_branch": "release-v0.6.2",
+  "repository": "VerG02/shadowscan-release",
+  "notes": [
+    "minimize and restore controls",
+    "close lifecycle teardown",
+    "TweenService easing with fallback",
+    "lowercase severity aggregation fix",
+    "loader duplicate-execution guard and game:HttpGet fallback"
+  ]
 }
